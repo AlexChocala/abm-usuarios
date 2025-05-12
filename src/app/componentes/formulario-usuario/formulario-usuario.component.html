@@ -1,0 +1,32 @@
+<div class="card p-4 mb-4 no-hover-effect">
+  <h4 class="text-primary mb-3 formulario-header">
+    <i class="bi bi-person-plus me-2"></i>Datos del Usuario
+  </h4>
+
+  <form (ngSubmit)="guardarUsuario()">
+    <div class="row g-3 mb-3">
+      <div class="col-md-6">
+        <input class="form-control" [(ngModel)]="nombre" name="nombre" required placeholder="Nombre">
+      </div>
+      <div class="col-md-6">
+        <input class="form-control" [(ngModel)]="apellido" name="apellido" placeholder="Apellido">
+      </div>
+      <div class="col-md-6">
+        <input class="form-control" [(ngModel)]="dni" name="dni" placeholder="DNI">
+      </div>
+      <div class="col-md-6">
+        <input class="form-control" [(ngModel)]="email" name="email" required placeholder="Email" type="email">
+      </div>
+    </div>
+
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-primary">
+        {{ idModificar ? 'Guardar cambios' : 'Agregar Usuario' }}
+      </button>
+      <button *ngIf="idModificar !== null" type="button" class="btn btn-outline-secondary"
+        (click)="limpiarFormulario()">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

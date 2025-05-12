@@ -1,0 +1,51 @@
+<div class="card p-4 no-hover-effect">
+  <div class="d-flex justify-content-between align-items-center mb-4 listado-header">
+    <h3 class="mb-0 text-primary">
+      <i class="bi bi-people-fill me-2"></i>Listado de Usuarios
+    </h3>
+    <button class="btn btn-primary rounded-pill" (click)="solicitarAgregarUsuario()">
+      <i class="bi bi-plus-lg me-1"></i>Agregar Usuario
+    </button>
+  </div>
+
+  <div *ngIf="usuarios && usuarios.length > 0; else noUsuarios">
+    <div *ngFor="let usuario of usuarios" class="user-item p-3 selectable-text">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="user-info">
+          <h5 class="mb-2">
+            {{ usuario.nombre || 'Nombre no disponible' }}
+            {{ usuario.apellido || '' }}
+          </h5>
+          <div class="d-flex flex-wrap gap-3">
+            <span class="badge bg-light text-dark">
+              <i class="bi bi-person-badge me-1"></i>
+              {{ usuario.dni || 'Sin DNI' }}
+            </span>
+            <span class="badge bg-light text-dark">
+              <i class="bi bi-envelope me-1"></i>
+              {{ usuario.email || 'Sin Email' }}
+            </span>
+          </div>
+        </div>
+        <div class="d-flex gap-2">
+          <button class="btn btn-outline-primary rounded-pill" (click)="editar(usuario)">
+            <i class="bi bi-pencil me-1"></i>Editar
+          </button>
+          <button class="btn btn-outline-danger rounded-pill" (click)="eliminar(usuario.id)">
+            <i class="bi bi-trash me-1"></i>Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noUsuarios>
+    <div class="empty-state">
+      <div class="empty-state-icon">
+        <i class="bi bi-people"></i>
+      </div>
+      <h4 class="text-muted">No hay usuarios registrados</h4>
+      <p class="text-muted mb-4">Comienza agregando un nuevo usuario</p>
+    </div>
+  </ng-template>
+</div>
